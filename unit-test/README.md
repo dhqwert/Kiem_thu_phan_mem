@@ -24,4 +24,7 @@ Nếu sử dụng IDE (IntelliJ, Eclipse):
 2. Chuột phải vào file `StudentAnalyzerTest.java`.
 3. Chọn **Run 'StudentAnalyzerTest'**.
 
+## Kết quả kiểm thử
 Kết quả mong đợi: Tất cả các test case đều hiện màu xanh (Pass).
+
+![Kết quả chạy JUnit](images/test.png)
