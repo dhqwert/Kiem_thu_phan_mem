@@ -2,28 +2,28 @@ import java.util.List;
 
 public class StudentAnalyzer {
 
+    // Định nghĩa hằng số để tránh Hard-code (Magic Numbers)
+    private static final double MIN_SCORE = 0.0;
+    private static final double MAX_SCORE = 10.0;
+    private static final double EXCELLENT_SCORE_THRESHOLD = 8.0;
+
     /**
      * Phân tích điểm số và trả về số lượng học sinh đạt loại Giỏi.
-     * @param scores danh sách điểm số từ 0 đến 10
+     * @param scores danh sách điểm số
      * @return số học sinh đạt loại Giỏi (>= 8.0)
      */
     public int countExcellentStudents(List<Double> scores) {
-        // Điều kiện 2: Nếu danh sách rỗng, trả về 0
-        if (scores == null || scores.isEmpty()) {
+        if (isEmptyOrNull(scores)) {
             return 0;
         }
 
         int count = 0;
-        // Vòng lặp 1: Duyệt qua danh sách
         for (Double score : scores) {
-            // Điều kiện 1: Validate dữ liệu (bỏ qua điểm âm hoặc > 10)
-            if (score < 0 || score > 10) {
-                continue;
-            }
-
-            // Logic nghiệp vụ: Điểm giỏi >= 8.0
-            if (score >= 8.0) {
-                count++;
+            // Sử dụng hàm helper để kiểm tra tính hợp lệ
+            if (isValidScore(score)) {
+                if (score >= EXCELLENT_SCORE_THRESHOLD) {
+                    count++;
+                }
             }
         }
         return count;
@@ -35,27 +35,43 @@ public class StudentAnalyzer {
      * @return điểm trung bình của các điểm hợp lệ
      */
     public double calculateValidAverage(List<Double> scores) {
-        if (scores == null || scores.isEmpty()) {
+        if (isEmptyOrNull(scores)) {
             return 0.0;
         }
 
         double sum = 0;
         int validCount = 0;
 
-        // Vòng lặp 2: Duyệt để tính toán
         for (Double score : scores) {
-            // Điều kiện 1: Validate dữ liệu
-            if (score >= 0 && score <= 10) {
+            if (isValidScore(score)) {
                 sum += score;
                 validCount++;
             }
         }
 
-        // Tránh lỗi chia cho 0 nếu không có điểm nào hợp lệ
+        // Tránh lỗi chia cho 0 (ArithmeticException hoặc ra NaN)
         if (validCount == 0) {
             return 0.0;
         }
 
         return sum / validCount;
+    }
+
+    // --- Helper Methods (Private) ---
+
+    /**
+     * Kiểm tra một điểm số có hợp lệ hay không.
+     * Tối ưu nguyên tắc DRY (Don't Repeat Yourself).
+     */
+    private boolean isValidScore(Double score) {
+        // Kiểm tra null để an toàn nếu List chứa phần tử null
+        return score != null && score >= MIN_SCORE && score <= MAX_SCORE;
+    }
+
+    /**
+     * Kiểm tra danh sách null hoặc rỗng.
+     */
+    private boolean isEmptyOrNull(List<Double> scores) {
+        return scores == null || scores.isEmpty();
     }
 }
