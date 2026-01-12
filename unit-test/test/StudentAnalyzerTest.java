@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -8,62 +9,65 @@ public class StudentAnalyzerTest {
 
     private final StudentAnalyzer analyzer = new StudentAnalyzer();
 
-    // --- Test cho hàm countExcellentStudents ---
+    // ==========================================
+    // Test cho hàm countExcellentStudents
+    // ==========================================
 
     @Test
     public void testCountExcellentStudents_NormalCase() {
-        // Trường hợp bình thường: Có điểm giỏi, khá, và điểm không hợp lệ
-        List<Double> scores = Arrays.asList(9.0, 8.5, 7.0, 11.0, -1.0);
-        // 9.0 và 8.5 là giỏi (2 người). 11.0 và -1.0 bị bỏ qua.
-        assertEquals(2, analyzer.countExcellentStudents(scores));
+        // Input: Hỗn hợp điểm giỏi, khá, điểm sai, điểm biên
+        List<Double> scores = Arrays.asList(9.0, 8.5, 7.0, 11.0, -1.0, 8.0);
+        // Logic: 9.0, 8.5, 8.0 là giỏi -> Kết quả mong đợi: 3
+        assertEquals(3, analyzer.countExcellentStudents(scores), "Should count correct excellent students ignoring invalid scores");
     }
 
     @Test
     public void testCountExcellentStudents_EmptyList() {
-        // Trường hợp biên: Danh sách rỗng
-        assertEquals(0, analyzer.countExcellentStudents(Collections.emptyList()));
+        assertEquals(0, analyzer.countExcellentStudents(Collections.emptyList()), "Empty list should return 0");
     }
 
     @Test
-    public void testCountExcellentStudents_AllInvalid() {
-        // Trường hợp ngoại lệ: Tất cả điểm đều sai
-        List<Double> scores = Arrays.asList(-5.0, 15.0, 10.1);
-        assertEquals(0, analyzer.countExcellentStudents(scores));
+    public void testCountExcellentStudents_NullList() {
+        // Test tính ổn định (Robustness) - Không được crash khi null
+        assertEquals(0, analyzer.countExcellentStudents(null), "Null list should be handled gracefully as 0");
     }
 
     @Test
-    public void testCountExcellentStudents_Boundary() {
-        // Trường hợp biên: 8.0 (vừa đủ giỏi) và 7.9 (suýt giỏi)
-        List<Double> scores = Arrays.asList(8.0, 7.9);
-        assertEquals(1, analyzer.countExcellentStudents(scores));
+    public void testCountExcellentStudents_NoExcellentStudents() {
+        List<Double> scores = Arrays.asList(5.0, 6.0, 7.9);
+        assertEquals(0, analyzer.countExcellentStudents(scores), "Should return 0 if no student is excellent");
     }
 
-    // --- Test cho hàm calculateValidAverage ---
+    // ==========================================
+    // Test cho hàm calculateValidAverage
+    // ==========================================
 
     @Test
     public void testCalculateValidAverage_NormalCase() {
-        // 9.0, 8.5, 7.0 hợp lệ. Tổng = 24.5. TB = 24.5 / 3 = 8.1666...
-        List<Double> scores = Arrays.asList(9.0, 8.5, 7.0, 11.0, -1.0);
-        assertEquals(8.166, analyzer.calculateValidAverage(scores), 0.01);
+        // Valid: 9.0, 7.0, 8.0. Invalid: 15.0. Sum = 24.0, Count = 3. Avg = 8.0
+        List<Double> scores = Arrays.asList(9.0, 7.0, 8.0, 15.0);
+        assertEquals(8.0, analyzer.calculateValidAverage(scores), 0.001);
     }
 
     @Test
-    public void testCalculateValidAverage_EmptyList() {
-        // Trường hợp biên: Rỗng
-        assertEquals(0.0, analyzer.calculateValidAverage(Collections.emptyList()), 0.001);
+    public void testCalculateValidAverage_WithDecimalResult() {
+        // Valid: 10, 9. Sum = 19. Count = 2. Avg = 9.5
+        List<Double> scores = Arrays.asList(10.0, 9.0);
+        assertEquals(9.5, analyzer.calculateValidAverage(scores), 0.001);
     }
 
     @Test
-    public void testCalculateValidAverage_AllInvalid() {
-        // Trường hợp: Có danh sách nhưng toàn bộ điểm không hợp lệ -> chia cho 0
-        List<Double> scores = Arrays.asList(-1.0, 12.0);
+    public void testCalculateValidAverage_AllInvalidScores() {
+        // Mọi điểm đều sai -> validCount = 0 -> Return 0.0
+        List<Double> scores = Arrays.asList(-5.0, 20.0);
         assertEquals(0.0, analyzer.calculateValidAverage(scores), 0.001);
     }
 
     @Test
-    public void testCalculateValidAverage_ZeroAndTen() {
-        // Trường hợp biên: 0 và 10
+    public void testCalculateValidAverage_BoundaryValues() {
+        // Kiểm tra biên 0 và 10
         List<Double> scores = Arrays.asList(0.0, 10.0);
+        // (0 + 10) / 2 = 5.0
         assertEquals(5.0, analyzer.calculateValidAverage(scores), 0.001);
     }
 }
