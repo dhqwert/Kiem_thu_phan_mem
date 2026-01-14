@@ -1,116 +1,117 @@
-# 📘 Portfolio Môn Kiểm thử Phần mềm (Software Testing)
+# 📘 Portfolio: Software Testing
 
-> **Kho lưu trữ các bài tập thực hành, mã nguồn và báo cáo kết quả học tập.**
+> **A repository for practical exercises, source code, and learning reports.**
 
-* **Sinh viên:** Đoàn Hoàng Quân
-* **Mã sinh viên:** BCS230070
-* **Lớp:** 23CS2
-* **Trạng thái:** 🟢 Đang cập nhật (In Progress)
-
----
-
-## Mục Lục (Table of Contents)
-
-1. [Giới thiệu chung](#-giới-thiệu-chung)
-2. [Cấu trúc Repository](#-cấu-trúc-repository)
-3. [Chương 1: Nguyên lý kiểm thử](#-chương-1-nguyên-lý-kiểm-thử)
-4. [Chương 2: Quy trình kiểm thử](#-chương-2-quy-trình-kiểm-thử)
-5. [Chương 3: Kiểm thử tĩnh](#-chương-3-kiểm-thử-tĩnh)
+* **Student:** Doan Hoang Quan
+* **Student ID:** BCS230070
+* **Class:** 23CS2
+* **Status:** 🟢 In Progress
 
 ---
 
-## 🌐 Giới thiệu chung
+## Table of Contents
 
-Dự án này là nơi tổng hợp toàn bộ quá trình thực hành môn Kiểm thử phần mềm. Mục tiêu là đi từ việc rèn luyện tư duy phát hiện lỗi giao diện, đến việc viết code kiểm thử đơn vị chặt chẽ, và cuối cùng là xây dựng kịch bản kiểm thử tự động quy trình (End-to-End).
+1. [Overview](https://www.google.com/search?q=%23-overview)
+2. [Repository Structure](https://www.google.com/search?q=%23-repository-structure)
+3. [Chapter 1: Testing Principles](https://www.google.com/search?q=%23-chapter-1-testing-principles)
+4. [Chapter 2: Testing Process](https://www.google.com/search?q=%23-chapter-2-testing-process)
+5. [Chapter 3: Automated Testing](https://www.google.com/search?q=%23-chapter-3-automated-testing)
 
-**Công nghệ sử dụng:**
-* **Ngôn ngữ:** Java (JUnit), JavaScript (Cypress).
-* **Công cụ:** IntelliJ IDEA/Eclipse, VS Code, Git.
+---
+
+## 🌐 Overview
+
+This project serves as a comprehensive collection of practical work for the Software Testing course. The objective ranges from training the mindset to detect interface defects ("Pixel Perfect"), to writing rigorous unit tests, and finally building End-to-End (E2E) automated test scenarios.
+
+**Technology Stack:**
+
+* **Languages:** Java (JUnit), JavaScript (Cypress).
+* **Tools:** IntelliJ IDEA/Eclipse, VS Code, Git.
 * **Frameworks:** JUnit 5, Cypress.io.
 
 ---
 
-## 📂 Cấu trúc Repository
+## 📂 Repository Structure
 
 ```text
 Kiem_thu_phan_mem/
-├── cantunsee/              # Bài tập Chương 1
-├── unit-test/              # Bài tập Chương 2 (Java Project)
-│   ├── src/                # Source code chức năng
-│   └── test/               # Source code test case
-├── cypress-exercise/       # Bài tập Chương 3 (Cypress Project)
+├── cantunsee/              # Chapter 1 Exercises
+├── unit-test/              # Chapter 2 Exercises (Java Project)
+│   ├── src/                # Functional Source Code
+│   └── test/               # Test Case Source Code
+├── cypress-exercise/       # Chapter 3 Exercises (Cypress Project)
 │   ├── cypress/
-│   │   ├── e2e/            # Các kịch bản test
+│   │   ├── e2e/            # Test Scenarios
 │   │   └── ...
 │   └── ...
-├── images/                 # Thư mục lưu trữ bằng chứng kiểm thử (Evidence)
-└── README.md               # File tài liệu này
+├── images/                 # Test Evidence Storage
+└── README.md               # This Documentation File
 
 ```
 
 ---
 
-## 🎨 Chương 1: Nguyên lý kiểm thử
+## 🎨 Chapter 1: Testing Principles
 
-**Mục tiêu:** Rèn luyện mắt quan sát ("Pixel Perfect") và phân biệt lỗi thiết kế giao diện thông qua trò chơi [Can't Unsee](https://www.google.com/search?q=https://cantunsee.space/).
+**Goal:** Train observation skills ("Pixel Perfect") and distinguish UI design errors through the [Can't Unsee](https://www.google.com/search?q=https://cantunsee.space/) game.
 
-* **Nội dung thực hiện:** Phân tích Contrast, Typography, Alignment, Padding.
-* **Kết quả:** Hoàn thành các cấp độ từ cơ bản đến nâng cao.
+* **Activities:** Analyze Contrast, Typography, Alignment, and Padding.
+* **Result:** Completed levels from basic to advanced.
 
-**📸 Bằng chứng (Evidence):**
+**📸 Evidence:**
 
 ![Kết quả Cant Unsee](images/chapter1/cantunsee_hoangquandoan.png)
 
 ---
 
-## ☕ Chương 2: Quy trình kiểm thử
+## ☕ Chapter 2: Testing Process
 
-**Mục tiêu:** Áp dụng JUnit 5 để kiểm thử logic xử lý điểm số học sinh (`StudentAnalyzer`). Đảm bảo code đạt chuẩn Clean Code và xử lý tốt các trường hợp biên.
+**Goal:** Apply JUnit 5 to test the student score processing logic (`StudentAnalyzer`). Ensure the code meets Clean Code standards and handles boundary cases effectively.
 
-* **Bài toán:** Xử lý danh sách điểm số (List Double), đếm số học sinh giỏi và tính điểm trung bình hợp lệ.
-* **Kỹ thuật áp dụng:**
-* Boundary Value Analysis (Phân tích giá trị biên).
-* Equivalence Partitioning (Phân vùng tương đương).
-* Refactoring & Clean Code (Tách hàm, dùng hằng số).
+* **Problem:** Process a list of scores (`List<Double>`), count the number of excellent students, and calculate the valid average score.
+* **Applied Techniques:**
+* Boundary Value Analysis.
+* Equivalence Partitioning.
+* Refactoring & Clean Code (Method extraction, constant usage).
 
 
 
-**✅ Danh sách Test Cases:**
+**✅ Test Cases:**
 
-| ID | Chức năng | Input (Dữ liệu vào) | Kỳ vọng (Expect) | Kết quả |
+| ID | Function | Input Data | Expectation | Result |
 | --- | --- | --- | --- | --- |
-| TC_01 | `countExcellentStudents` | `[9.0, 8.5, 7.0, 11.0, -1.0]` | `2` (Bỏ qua điểm sai) | PASS |
-| TC_02 | `countExcellentStudents` | `[]` (Rỗng) | `0` | PASS |
-| TC_03 | `countExcellentStudents` | `null` | `0` (Không crash) | PASS |
+| TC_01 | `countExcellentStudents` | `[9.0, 8.5, 7.0, 11.0, -1.0]` | `2` (Ignore invalid scores) | PASS |
+| TC_02 | `countExcellentStudents` | `[]` (Empty) | `0` | PASS |
+| TC_03 | `countExcellentStudents` | `null` | `0` (No crash) | PASS |
 | TC_04 | `calculateValidAverage` | `[0.0, 10.0]` | `5.0` | PASS |
-| TC_05 | `calculateValidAverage` | `[-5.0, 15.0]` (Toàn điểm sai) | `0.0` | PASS |
+| TC_05 | `calculateValidAverage` | `[-5.0, 15.0]` (All invalid) | `0.0` | PASS |
 
-**📸 Bằng chứng (Evidence):**
+**📸 Evidence:**
 
 ![Kết quả JUnit](images/chapter2/junit_result.png)
 
 ---
 
-## 🌲 Chương 3: Kiểm thử tĩnh
+## 🌲 Chapter 3: Automated Testing
 
-**Mục tiêu:** Sử dụng Cypress để kiểm thử tự động quy trình mua hàng trên trang [SauceDemo](https://www.saucedemo.com).
+**Goal:** Use Cypress to automate the purchasing process on [SauceDemo](https://www.saucedemo.com).
 
-* **Phạm vi:** Kiểm thử chức năng, giao diện và luồng nghiệp vụ (Business Flow).
-* **Điểm nổi bật:**
-* Sử dụng **Best Practices**: Dùng Selector `[data-test]`, tránh hard-coded wait.
-* Xử lý bài tập nâng cao: Flow xóa sản phẩm và Flow thanh toán đầy đủ.
+* **Scope:** Functional, Interface, and Business Flow testing.
+* **Highlights:**
+* **Best Practices:** Used `[data-test]` selectors, avoided hard-coded waits.
+* **Advanced Scenarios:** Implemented Product Removal Flow and Full Checkout Flow.
 
 
 
-**✅ Các kịch bản kiểm thử (Scenarios):**
+**✅ Test Scenarios:**
 
-1. **Login Flow:** Kiểm tra đăng nhập đúng/sai.
-2. **Shopping Flow:** Thêm sản phẩm -> Icon giỏ hàng cập nhật số lượng.
-3. **Filter Flow:** Sắp xếp giá từ Thấp -> Cao (Kiểm tra dữ liệu hiển thị đúng).
-4. **Cart Management (Nâng cao):** Thêm sản phẩm -> Xóa sản phẩm -> Icon biến mất.
-5. **Checkout Process (Nâng cao):** Cart -> Checkout Info -> Overview Page.
+1. **Login Flow:** Verify successful and failed login attempts.
+2. **Shopping Flow:** Add product -> Verify cart icon updates quantity.
+3. **Filter Flow:** Sort Price Low -> High (Verify data display accuracy).
+4. **Cart Management (Advanced):** Add product -> Remove product -> Verify icon updates.
+5. **Checkout Process (Advanced):** Cart -> Checkout Info -> Overview Page.
 
-**Hướng dẫn chạy test:**
+**How to run tests:**
 
 ```bash
 cd cypress-exercise
@@ -119,12 +120,14 @@ npx cypress open
 
 ```
 
-**📸 Bằng chứng (Evidence):**
+**📸 Evidence:**
 
 ![Cấu trúc dự án](images/chapter3/project_structure.png)
+
 ![Kết quả Cypress](images/chapter3/cart_test_pass.png)
+
 ![Kết quả Cypress](images/chapter3/login_test_pass.png)
 
 ---
 
-*Last updated: 12/01/2026*
+*Last updated: January 12, 2026*
