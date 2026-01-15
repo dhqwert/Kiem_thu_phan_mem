@@ -1,0 +1,4 @@
+Label,# Samples,Average,Min,Max,Std. Dev.,Error %,Throughput,Received KB/sec,Sent KB/sec,Avg. Bytes
+Get_Homepage,3424,334,268,1350,61.71,0.000%,56.78464,263.80,6.43,4757.1
+Get_SubPage,50,342,275,850,83.91,0.000%,1.68674,5.52,0.21,3349.0
+TOTAL,3474,334,268,1350,62.09,0.000%,57.61385,266.51,6.54,4736.8
