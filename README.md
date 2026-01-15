@@ -122,7 +122,6 @@ npx cypress open
 
 ![Cấu trúc dự án](images/chapter3/project_structure.png)
 
-
 ![Kết quả Cypress](images/chapter3/cart_test_pass.png)
 
 ![Kết quả Cypress](images/chapter3/login_test_pass.png)
