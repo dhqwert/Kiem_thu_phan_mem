@@ -16,6 +16,7 @@
 3. [Chapter 1: Testing Principles](https://www.google.com/search?q=%23-chapter-1-testing-principles)
 4. [Chapter 2: Testing Process](https://www.google.com/search?q=%23-chapter-2-testing-process)
 5. [Chapter 3: Automated Testing](https://www.google.com/search?q=%23-chapter-3-automated-testing)
+6. [Chapter 4: Performance Testing](#-chapter-4-performance-testing)
 
 ---
 
@@ -37,13 +38,10 @@ This project serves as a comprehensive collection of practical work for the Soft
 Kiem_thu_phan_mem/
 ├── cantunsee/              # Chapter 1 Exercises
 ├── unit-test/              # Chapter 2 Exercises (Java Project)
-│   ├── src/                # Functional Source Code
-│   └── test/               # Test Case Source Code
 ├── cypress-exercise/       # Chapter 3 Exercises (Cypress Project)
-│   ├── cypress/
-│   │   ├── e2e/            # Test Scenarios
-│   │   └── ...
-│   └── ...
+├── jmeter/                 # Chapter 4 Exercises (JMeter Project)  <-- THÊM DÒNG NÀY
+│   ├── performance_test.jmx
+│   └── results.csv
 ├── images/                 # Test Evidence Storage
 └── README.md               # This Documentation File
 
@@ -130,4 +128,37 @@ npx cypress open
 
 ---
 
-*Last updated: January 12, 2026*
+## 🚀 Chapter 4: Performance Testing
+
+**Goal:** Analyze the performance and stability of the [BlazeDemo](https://blazedemo.com) website using **Apache JMeter**.
+
+* **Tools:** Apache JMeter 5.6.3.
+* **Target:** Verify response times and server stability under different load conditions.
+* **Scenarios:** Basic Check, Heavy Load, and Endurance Test.
+
+**✅ Test Scenarios:**
+
+| Thread Group | Users | Ramp-up | Loop/Duration | Description | Result |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **TG1_Basic** | 10 | 1s | 5 | Access Homepage to verify connectivity. | PASS |
+| **TG2_Heavy** | 50 | 30s | 1 | Simulate high traffic accessing Homepage & Vacation Page. | PASS |
+| **TG3_Duration** | 20 | 10s | 60s | Sustain load for 1 minute to check stability. | PASS |
+
+**📊 Summary Report Analysis:**
+
+| Metric | Value (Avg) | Assessment |
+| :--- | :--- | :--- |
+| **Total Samples** | 3474 | A solid sample size collected over the test duration. |
+| **Average Response Time** | 334 ms | Excellent performance, response time is under 0.5s. |
+| **Error Rate** | 0.00% | System is highly stable, 100% success rate. |
+| **Throughput** | 57.6/sec | Server handled heavy traffic efficiently (~3400 reqs/min). |
+
+**📸 Evidence:**
+
+![JMeter Test Plan](images/chapter4/test_plan_structure.png)
+
+![JMeter Summary Report](images/chapter4/summary_report.png)
+
+---
+
+*Last updated: January 15, 2026*
