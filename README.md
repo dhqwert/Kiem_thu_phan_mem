@@ -95,7 +95,7 @@ Bảng dưới đây liệt kê các kịch bản kiểm thử (Test Scenarios) 
 
 **📸 Evidence:**
 
-![Kết quả JUnit](images/chapter2/junit5_result.png)
+![Kết quả JUnit](images/chapter2/junit_result.png)
 
 ---
 
