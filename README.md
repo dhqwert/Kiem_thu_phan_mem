@@ -72,8 +72,6 @@ Kiem_thu_phan_mem/
 * Equivalence Partitioning.
 * Refactoring & Clean Code (Method extraction, constant usage).
 
-**✅ Test Cases:**
-
 ### ✅ Danh sách Test Cases
 
 Bảng dưới đây liệt kê các kịch bản kiểm thử (Test Scenarios) đã được bao phủ trong `StudentAnalyzerTest.java`:
@@ -92,6 +90,34 @@ Bảng dưới đây liệt kê các kịch bản kiểm thử (Test Scenarios) 
 | **TC_10** | `calculateValidAverage` | `[]` (Empty List) | Empty List | `0.0` | ✅ PASS |
 | **TC_11** | `calculateValidAverage` | `null` | **Null List Input** | `0.0` | ✅ PASS |
 | **TC_12** | `calculateValidAverage` | `[10.0, 9.0]` | Decimal Result | `9.5` (Kết quả số thực chính xác) | ✅ PASS |
+
+### 🧩 Decision Tables
+
+The following tables describe the logic rules applied to the `StudentAnalyzer` methods, ensuring all logical branches and edge cases are covered.
+
+#### **1. Feature: Count Excellent Students**
+
+**Logic:** Count students with scores `>= 8.0`, ignoring invalid (`< 0` or `> 10`) or `null` scores.
+
+| Rule ID | Input List State | Element Condition | Score Threshold (>= 8.0) | System Action | Related Test Case |
+| --- | --- | --- | --- | --- | --- |
+| **R1** | `Null` or `Empty` | N/A | N/A | Return `0` | TC_04, TC_05 |
+| **R2** | Not Empty | `Null` | N/A | Ignore (Skip) | TC_02 |
+| **R3** | Not Empty | Invalid (`< 0` or `> 10`) | N/A | Ignore (Skip) | TC_01 |
+| **R4** | Not Empty | Valid (`0.0` - `10.0`) | **False** (`< 8.0`) | Do not count | TC_03, TC_06 |
+| **R5** | Not Empty | Valid (`0.0` - `10.0`) | **True** (`>= 8.0`) | **Increment Count (+1)** | TC_01, TC_03 |
+
+#### **2. Feature: Calculate Valid Average**
+
+**Logic:** Calculate the average of valid scores only. Returns `0.0` if no valid scores exist to avoid `DivisionByZero` errors.
+
+| Rule ID | Input List State | Element Condition | Valid Count State (After Loop) | System Action | Related Test Case |
+| --- | --- | --- | --- | --- | --- |
+| **R1** | `Null` or `Empty` | N/A | N/A | Return `0.0` | TC_10, TC_11 |
+| **R2** | Not Empty | `Null` or Invalid | N/A | Ignore (Do not add to sum) | TC_07, TC_08 |
+| **R3** | Not Empty | Valid (`0.0` - `10.0`) | N/A | `Sum += Score`, `Count++` | TC_07, TC_12 |
+| **R4** | Not Empty | (Processed all items) | `== 0` (No valid scores) | Return `0.0` (Guard Clause) | TC_09 |
+| **R5** | Not Empty | (Processed all items) | `> 0` | Return `Sum / Count` | TC_07, TC_12 |
 
 **📸 Evidence:**
 
