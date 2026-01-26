@@ -72,24 +72,24 @@ Kiem_thu_phan_mem/
 * Equivalence Partitioning.
 * Refactoring & Clean Code (Method extraction, constant usage).
 
-### ✅ Danh sách Test Cases
+### ✅ Test Cases List
 
-Bảng dưới đây liệt kê các kịch bản kiểm thử (Test Scenarios) đã được bao phủ trong `StudentAnalyzerTest.java`:
+The table below lists the test scenarios covered in `StudentAnalyzerTest.java`:
 
 | ID | Function | Input Data | Scenario / Description | Expectation | Result |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **TC_01** | `countExcellentStudents` | `[9.0, 8.5, 7.0, 11.0, -1.0, 8.0]` | Mixed valid & invalid scores | `3` (Chỉ đếm >= 8.0, bỏ qua điểm sai) | ✅ PASS |
-| **TC_02** | `countExcellentStudents` | `[9.0, null, 8.0, null]` | **List contains `null`** | `2` (Bỏ qua `null` an toàn, không crash) | ✅ PASS |
-| **TC_03** | `countExcellentStudents` | `[7.9999, 8.0]` | **Boundary Precision** | `1` (7.9999 không được làm tròn lên) | ✅ PASS |
+| --- | --- | --- | --- | --- | --- |
+| **TC_01** | `countExcellentStudents` | `[9.0, 8.5, 7.0, 11.0, -1.0, 8.0]` | Mixed valid & invalid scores | `3` (Count only >= 8.0, ignore invalid scores) | ✅ PASS |
+| **TC_02** | `countExcellentStudents` | `[9.0, null, 8.0, null]` | **List contains `null**` | `2` (Safely ignore `null`, prevent crash) | ✅ PASS |
+| **TC_03** | `countExcellentStudents` | `[7.9999, 8.0]` | **Boundary Precision** | `1` (7.9999 is not rounded up) | ✅ PASS |
 | **TC_04** | `countExcellentStudents` | `[]` (Empty List) | Empty List | `0` | ✅ PASS |
-| **TC_05** | `countExcellentStudents` | `null` | **Null List Input** | `0` (Xử lý ngoại lệ an toàn) | ✅ PASS |
+| **TC_05** | `countExcellentStudents` | `null` | **Null List Input** | `0` (Safe exception handling) | ✅ PASS |
 | **TC_06** | `countExcellentStudents` | `[5.0, 6.0, 7.9]` | No excellent students | `0` | ✅ PASS |
-| **TC_07** | `calculateValidAverage` | `[9.0, 7.0, 8.0, 15.0]` | Mixed valid & invalid scores | `8.0` (Tổng 24.0 / 3 phần tử hợp lệ) | ✅ PASS |
-| **TC_08** | `calculateValidAverage` | `[10.0, null, 5.0]` | **List contains `null`** | `7.5` (Bỏ qua `null` khi tính toán) | ✅ PASS |
-| **TC_09** | `calculateValidAverage` | `[-5.0, 20.0, null]` | All Invalid or Null | `0.0` (Tránh lỗi chia cho 0 / NaN) | ✅ PASS |
+| **TC_07** | `calculateValidAverage` | `[9.0, 7.0, 8.0, 15.0]` | Mixed valid & invalid scores | `8.0` (Sum 24.0 / 3 valid elements) | ✅ PASS |
+| **TC_08** | `calculateValidAverage` | `[10.0, null, 5.0]` | **List contains `null**` | `7.5` (Ignore `null` during calculation) | ✅ PASS |
+| **TC_09** | `calculateValidAverage` | `[-5.0, 20.0, null]` | All Invalid or Null | `0.0` (Avoid division by zero / NaN) | ✅ PASS |
 | **TC_10** | `calculateValidAverage` | `[]` (Empty List) | Empty List | `0.0` | ✅ PASS |
 | **TC_11** | `calculateValidAverage` | `null` | **Null List Input** | `0.0` | ✅ PASS |
-| **TC_12** | `calculateValidAverage` | `[10.0, 9.0]` | Decimal Result | `9.5` (Kết quả số thực chính xác) | ✅ PASS |
+| **TC_12** | `calculateValidAverage` | `[10.0, 9.0]` | Decimal Result | `9.5` (Precise double result) | ✅ PASS |
 
 ### 🧩 Decision Tables
 
